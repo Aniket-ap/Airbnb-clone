@@ -1,3 +1,6 @@
+//This component is just an example for the challenge
+//It is not used by the app. Login is used instead.
+
 import React, {Component} from 'react';
 import './Login.css';
 import {connect} from 'react-redux';
@@ -31,24 +34,22 @@ class Login extends Component{
         }
         const resp = await axios.post(url,data);
         const token = resp.data.token;
-                
-
-
         
+        // -- loggedIn
+        // -- badPass
         // -- noEmail
+
         if(resp.data.msg === "noEmail"){
             swal({
-                title: "That email is not registered.",
+                title: "Please provide an email",
                 icon: "error",
-              })
-        // -- badPass
+              })            
         }else if(resp.data.msg === "badPass"){
             swal({
                 title: "Invalid email/password",
                 text: "We don't have a match for that user name and password.",
                 icon: "error",
               })
-        // -- loggedIn
         }else if(resp.data.msg === "loggedIn"){
             swal({
                 title: "Success!",
